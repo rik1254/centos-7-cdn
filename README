@@ -1,13 +1,11 @@
-Edit 'gold.ks' with the information relevant to the current deployment
-
-
-
 Open up each script and fill in the required variables.
 
 Execute the scripts in the following order:
 
-1. centos7-repo-host.sh
-2. centos7-repo-client.sh
-3. docker-repo-host.sh
-4. docker-repo.client.sh
-5. install-docker.sh
+For CentOS
+centos7-repo-host.sh
+centos7-repo-client.sh
+
+For Docker (after CentOS scripts has been ran)
+docker-repo-host.sh
+docker-repo.client.sh
