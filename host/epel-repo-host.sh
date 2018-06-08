@@ -1,20 +1,21 @@
 #!/bin/bash
 
 #make required directory
-mkdir -p /var/www/html/epel/7/x86_64
+mkdir -p /var/www/html/epel/pub/epel/7/x86_64
 
 #reposync
-yum-config-manager --add-repo http://dl.fedoraproject.org/pub/epel/7/x86_64
-reposync -p /var/www/html/epel
+reposync --gpgcheck -l --repoid=epel --download_path=/var/www/html/epel
 
 #moves repo to correct location
-mv ~/docker-ce-stable/Packages /var/www/html/docker/docker-ce-stable
+mv ~/var/www/html/epel/epel/* /var/www/html/epel/pub/epel/7/x86_64
 
 #retrieve gpg key
-curl https://download.docker.com/linux/centos/gpg > /var/www/html/keys/RPM-GPG-KEY-DOCKER
+curl http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7 > /var/www/html/keys/RPM-GPG-KEY-EPEL-7
 
 #createrepo
-createrepo /var/www/html/epel/7/x86_64
+createrepo /var/www/html/epel/pub/epel/7/x86_64
 
 #restores selinux context
 restorecon -r /var/www/html/
+
+
